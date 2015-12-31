@@ -1,8 +1,8 @@
 # react-stdio
 
-[react-stdio](https://github.com/mjackson/react-stdio) is a simple server for rendering React components on the server. It's mainly useful when you're using something other than node.js as your backend.
+[react-stdio](https://github.com/mjackson/react-stdio) lets you render [React](https://facebook.github.io/react/) components on the server, regardless of the backend technology you're using.
 
-As its name suggests, other processes communicate with react-stdio using standard streams. The protocol is JSON, so any language that can spawn a child process and write to its stdin can use the server. Requests are handled serially, so responses are issued in the same order requests are received.
+As its name suggests, other processes communicate with react-stdio using standard streams. The protocol is JSON, so any language that can spawn a child process and write JSON to its stdin can use the server. Requests are handled serially, so responses are issued in the same order requests are received.
 
 ## Installation
 
@@ -14,7 +14,7 @@ Using [npm](https://npmjs.com):
 
 Once you've installed the server, you will have a `react-stdio` binary available (assuming `node_modules/.bin` is in your `$PATH`). Execute it to start the server.
 
-To render a React component, put a JSON blob on stdin with any of the following properties:
+To render a React component, write a JSON blob to stdin with any of the following properties:
 
     component       The path to a file that exports a React component (required)
     props           Any props you want to pass to the component (optional, default is {})
