@@ -16,7 +16,7 @@ function renderToString(element, callback) {
 }
 
 function handleRequest(workingDir, request, callback) {
-  const { component: componentPath, method, props } = request
+  const { component: componentPath, render: renderMethod, props } = request
 
   invariant(
     componentPath != null,
@@ -24,12 +24,12 @@ function handleRequest(workingDir, request, callback) {
   )
 
   let render
-  if (method === 'renderToStaticMarkup') {
+  if (renderMethod === 'renderToStaticMarkup') {
     render = renderToStaticMarkup
-  } else if (method === 'renderToString') {
+  } else if (renderMethod === 'renderToString') {
     render = renderToString
   } else {
-    const methodFile = path.resolve(workingDir, method)
+    const methodFile = path.resolve(workingDir, renderMethod)
 
     try {
       render = getDefaultExports(methodFile)
@@ -42,7 +42,7 @@ function handleRequest(workingDir, request, callback) {
   invariant(
     typeof render === 'function',
     'Cannot load render method: %s',
-    method
+    renderMethod
   )
 
   const componentFile = path.resolve(workingDir, componentPath)
@@ -74,6 +74,7 @@ export function createRequestHandler(workingDir) {
         if (error) {
           callback(error)
         } else if (typeof html !== 'string') {
+          // Crash the server process.
           callback(new Error('Render method must return a string'))
         } else {
           callback(null, JSON.stringify({ html }))
