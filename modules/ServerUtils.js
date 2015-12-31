@@ -15,8 +15,8 @@ function renderString(component, props={}) {
 }
 
 export function createRequestHandler(workingDir) {
-  return function (data, callback) {
-    const { component: componentPath, type, props } = data
+  return function (request, callback) {
+    const { component: componentPath, type, props } = request
 
     let response
     if (componentPath == null) {
