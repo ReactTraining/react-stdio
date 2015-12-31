@@ -16,7 +16,7 @@ function renderString(component, props={}) {
 
 export function createRequestHandler(workingDir) {
   return function (request, callback) {
-    const { component: componentPath, type, props } = request
+    const { component: componentPath, method, props } = request
 
     let response
     if (componentPath == null) {
@@ -25,7 +25,7 @@ export function createRequestHandler(workingDir) {
       }
     } else {
       const componentFile = path.resolve(workingDir, componentPath)
-      const render = (type === 'static') ? renderStaticMarkup : renderString
+      const render = (method === 'renderToStaticMarkup') ? renderStaticMarkup : renderString
 
       try {
         const component = require(componentFile).default
