@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A small server for rendering React components over stdio",
   "main": "server.js",
-  "bin": "./server.js",
+  "bin": "./bin/react-stdio.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
