@@ -1,17 +1,9 @@
 import path from 'path'
-import ReactDOMServer from 'react-dom/server'
-import React from 'react'
+import { renderToStaticMarkup, renderToString } from 'react-dom/server'
+import { createElement } from 'react'
 
-function renderStaticMarkup(component, props) {
-  return ReactDOMServer.renderToStaticMarkup(
-    React.createElement(component, props)
-  )
-}
-
-function renderString(component, props={}) {
-  return ReactDOMServer.renderToString(
-    React.createElement(component, props)
-  )
+function getComponent(file) {
+  return require(file).default
 }
 
 export function createRequestHandler(workingDir) {
@@ -25,13 +17,14 @@ export function createRequestHandler(workingDir) {
       }
     } else {
       const componentFile = path.resolve(workingDir, componentPath)
-      const render = (method === 'renderToStaticMarkup') ? renderStaticMarkup : renderString
+      const render = (method === 'renderToStaticMarkup') ? renderToStaticMarkup : renderToString
 
       try {
-        const component = require(componentFile).default
+        const component = getComponent(componentFile)
+        const element = createElement(component, props)
 
         response = {
-          html: render(component, props)
+          html: render(element)
         }
       } catch (error) {
         if (error.code === 'MODULE_NOT_FOUND') {
