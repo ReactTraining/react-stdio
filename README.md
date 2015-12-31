@@ -20,6 +20,8 @@ To render a React component, put a JSON blob on stdin with any of the following 
     props           Any props you want to pass to the component (optional, default is {})
     method          The type of rendering (optional, default is renderToString)
 
+If the request is successful, the server will put a JSON blob with `{"html":"..."}` on stdout. If the request fails for some reason, the JSON will have an `error` property instead of `html`.
+
 Example:
 
     $ echo '{"component":"./MyComponent","props":{"message":"hello"}}' | react-stdio
