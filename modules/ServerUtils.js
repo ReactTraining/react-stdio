@@ -4,7 +4,13 @@ import ReactDOMServer from 'react-dom/server'
 import { createElement } from 'react'
 
 function getDefaultExports(file) {
-  return require(file).default
+  const moduleExports = require(file)
+
+  // Return the "default" export if using ES2015 modules.
+  if (moduleExports && moduleExports.default)
+    return moduleExports.default
+
+  return moduleExports
 }
 
 function renderToStaticMarkup(element, callback) {
@@ -24,10 +30,10 @@ function handleRequest(workingDir, request, callback) {
   )
 
   let render
-  if (renderMethod === 'renderToStaticMarkup') {
-    render = renderToStaticMarkup
-  } else if (renderMethod === 'renderToString') {
+  if (renderMethod == null || renderMethod === 'renderToString') {
     render = renderToString
+  } else if (renderMethod === 'renderToStaticMarkup') {
+    render = renderToStaticMarkup
   } else {
     const methodFile = path.resolve(workingDir, renderMethod)
 
