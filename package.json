@@ -1,17 +1,21 @@
 {
   "name": "react-stdio",
   "version": "1.0.0",
-  "description": "A small server for rendering React components over stdio",
-  "main": "server.js",
-  "bin": "./bin/react-stdio.js",
+  "description": "Render React.js components using JSON + stdio streams",
+  "bin": "./bin/react-stdio",
+  "files": [
+    "bin"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "build": "webpack",
+    "start": "babel-node server.js"
   },
   "author": "Michael Jackson",
   "license": "MIT",
   "dependencies": {
-    "babel-core": "^6.3.26",
+    "babel-cli": "^6.3.17",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
     "event-stream": "^3.3.2",
     "invariant": "^2.2.0",
     "jsonstream": "^1.0.3",
@@ -19,8 +23,7 @@
     "react-dom": "^0.14.5"
   },
   "devDependencies": {
-    "babel-cli": "^6.3.17",
-    "babel-preset-es2015": "^6.3.13",
-    "babel-preset-react": "^6.3.13"
+    "babel-loader": "^6.2.0",
+    "webpack": "^1.12.9"
   }
 }

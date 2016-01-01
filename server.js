@@ -1,8 +1,6 @@
-require('babel-core/register')
-
-var es = require('event-stream')
-var JSONStream = require('jsonstream')
-var createRequestHandler = require('./modules/ServerUtils').createRequestHandler
+import es from 'event-stream'
+import JSONStream from 'jsonstream'
+import { createRequestHandler } from './modules/ServerUtils'
 
 process.stdin
   .pipe(JSONStream.parse())

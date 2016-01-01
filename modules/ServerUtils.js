@@ -1,25 +1,8 @@
 import path from 'path'
 import invariant from 'invariant'
-import ReactDOMServer from 'react-dom/server'
+import { renderToStaticMarkup, renderToString } from './RenderUtils'
+import { getDefaultExports } from './ModuleUtils'
 import { createElement } from 'react'
-
-function getDefaultExports(file) {
-  const moduleExports = require(file)
-
-  // Return the "default" export if using ES2015 modules.
-  if (moduleExports && moduleExports.default)
-    return moduleExports.default
-
-  return moduleExports
-}
-
-function renderToStaticMarkup(element, callback) {
-  return callback(null, ReactDOMServer.renderToStaticMarkup(element))
-}
-
-function renderToString(element, callback) {
-  return callback(null, ReactDOMServer.renderToString(element))
-}
 
 function handleRequest(workingDir, request, callback) {
   const { component: componentPath, render: renderMethod, props } = request
