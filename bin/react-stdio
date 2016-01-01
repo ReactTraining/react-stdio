@@ -74,7 +74,7 @@
 /* 3 */
 /***/ function(module, exports) {
 
-	module.exports = require("jsonstream");
+	module.exports = require("JSONStream");
 
 /***/ },
 /* 4 */
