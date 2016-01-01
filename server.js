@@ -3,7 +3,7 @@ require('babel-register')({
 })
 
 var es = require('event-stream')
-var JSONStream = require('jsonstream')
+var JSONStream = require('JSONStream')
 var createRequestHandler = require('./modules/ServerUtils').createRequestHandler
 
 process.stdin
