@@ -1,4 +1,7 @@
-# react-stdio
+# react-stdio [![npm package][npm-badge]][npm]
+
+[npm-badge]: https://img.shields.io/npm/v/react-stdio.svg?style=flat-square
+[npm]: https://www.npmjs.org/package/react-stdio
 
 [react-stdio](https://github.com/mjackson/react-stdio) lets you render [React](https://facebook.github.io/react/) components on the server, regardless of the backend technology you're using.
 
