@@ -48,34 +48,36 @@
 
 	'use strict';
 
-	var _eventStream = __webpack_require__(1);
+	__webpack_require__(1)({
+	  presets: ['es2015', 'react']
+	});
 
-	var _eventStream2 = _interopRequireDefault(_eventStream);
+	var es = __webpack_require__(2);
+	var JSONStream = __webpack_require__(3);
+	var createRequestHandler = __webpack_require__(4).createRequestHandler;
 
-	var _jsonstream = __webpack_require__(2);
-
-	var _jsonstream2 = _interopRequireDefault(_jsonstream);
-
-	var _ServerUtils = __webpack_require__(3);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	process.stdin.pipe(_jsonstream2.default.parse()).pipe(_eventStream2.default.map((0, _ServerUtils.createRequestHandler)(process.cwd()))).pipe(process.stdout);
+	process.stdin.pipe(JSONStream.parse()).pipe(es.map(createRequestHandler(process.cwd()))).pipe(process.stdout);
 
 /***/ },
 /* 1 */
 /***/ function(module, exports) {
 
-	module.exports = require("event-stream");
+	module.exports = require("babel-register");
 
 /***/ },
 /* 2 */
 /***/ function(module, exports) {
 
-	module.exports = require("jsonstream");
+	module.exports = require("event-stream");
 
 /***/ },
 /* 3 */
+/***/ function(module, exports) {
+
+	module.exports = require("jsonstream");
+
+/***/ },
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -85,19 +87,19 @@
 	});
 	exports.createRequestHandler = createRequestHandler;
 
-	var _path = __webpack_require__(4);
+	var _path = __webpack_require__(5);
 
 	var _path2 = _interopRequireDefault(_path);
 
-	var _invariant = __webpack_require__(5);
+	var _invariant = __webpack_require__(6);
 
 	var _invariant2 = _interopRequireDefault(_invariant);
 
-	var _RenderUtils = __webpack_require__(6);
+	var _RenderUtils = __webpack_require__(7);
 
-	var _ModuleUtils = __webpack_require__(8);
+	var _ModuleUtils = __webpack_require__(9);
 
-	var _react = __webpack_require__(9);
+	var _react = __webpack_require__(10);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -159,19 +161,19 @@
 	}
 
 /***/ },
-/* 4 */
+/* 5 */
 /***/ function(module, exports) {
 
 	module.exports = require("path");
 
 /***/ },
-/* 5 */
+/* 6 */
 /***/ function(module, exports) {
 
 	module.exports = require("invariant");
 
 /***/ },
-/* 6 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -182,7 +184,7 @@
 	exports.renderToStaticMarkup = renderToStaticMarkup;
 	exports.renderToString = renderToString;
 
-	var _server = __webpack_require__(7);
+	var _server = __webpack_require__(8);
 
 	var _server2 = _interopRequireDefault(_server);
 
@@ -197,13 +199,13 @@
 	}
 
 /***/ },
-/* 7 */
+/* 8 */
 /***/ function(module, exports) {
 
 	module.exports = require("react-dom/server");
 
 /***/ },
-/* 8 */
+/* 9 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -221,7 +223,7 @@
 	};
 
 /***/ },
-/* 9 */
+/* 10 */
 /***/ function(module, exports) {
 
 	module.exports = require("react");
