@@ -1,6 +1,6 @@
 {
   "name": "react-stdio",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Render React.js components on any backend",
   "bin": "./bin/react-stdio",
   "preferGlobal": true,
