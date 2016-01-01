@@ -7,7 +7,7 @@
     "bin"
   ],
   "scripts": {
-    "build": "webpack",
+    "build": "webpack && chmod +x bin/react-stdio",
     "start": "babel-node server.js"
   },
   "author": "Michael Jackson",
