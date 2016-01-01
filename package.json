@@ -3,16 +3,19 @@
   "version": "2.0.0",
   "description": "Render React.js components on any backend",
   "bin": "./bin/react-stdio",
+  "preferGlobal": true,
   "files": [
     "bin"
   ],
   "scripts": {
-    "build": "webpack && chmod +x bin/react-stdio",
-    "start": "babel-node server.js"
+    "build": "webpack && chmod +x bin/react-stdio"
   },
   "author": "Michael Jackson",
   "license": "MIT",
   "dependencies": {
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "babel-register": "^6.3.13",
     "event-stream": "^3.3.2",
     "invariant": "^2.2.0",
     "jsonstream": "^1.0.3",
@@ -20,10 +23,7 @@
     "react-dom": "^0.14.5"
   },
   "devDependencies": {
-    "babel-cli": "^6.3.17",
     "babel-loader": "^6.2.0",
-    "babel-preset-es2015": "^6.3.13",
-    "babel-preset-react": "^6.3.13",
     "webpack": "^1.12.9"
   }
 }

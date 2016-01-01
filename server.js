@@ -1,6 +1,10 @@
-import es from 'event-stream'
-import JSONStream from 'jsonstream'
-import { createRequestHandler } from './modules/ServerUtils'
+require('babel-register')({
+  presets: [ 'es2015', 'react' ]
+})
+
+var es = require('event-stream')
+var JSONStream = require('jsonstream')
+var createRequestHandler = require('./modules/ServerUtils').createRequestHandler
 
 process.stdin
   .pipe(JSONStream.parse())
