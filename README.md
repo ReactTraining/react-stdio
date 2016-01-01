@@ -38,4 +38,4 @@ This function is asynchronous so you have time to do data fetching before you re
 
 ## Environment
 
-Your component file (and, optionally, your render file) are loaded in a node.js environment with Babel's [es2015](https://babeljs.io/docs/plugins/preset-es2015/) and [react](https://babeljs.io/docs/plugins/preset-react/) presets installed. If you need some other code transforms to run first (e.g. webpack or Browserify) you should create your bundle first and tell react-stdio to load your bundle instead of the plain component file.
+Your component file (and, optionally, your render file) are loaded in a vanilla node.js environment. If you need to run some code transforms (e.g. using webpack or Browserify) you should create your bundle first and tell react-stdio to load your bundle instead of the plain component file.
