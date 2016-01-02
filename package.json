@@ -7,9 +7,6 @@
   "files": [
     "bin"
   ],
-  "scripts": {
-    "build": "webpack && chmod +x bin/react-stdio"
-  },
   "author": "Michael Jackson",
   "license": "MIT",
   "dependencies": {
@@ -21,9 +18,5 @@
     "invariant": "^2.2.0",
     "react": "^0.14.5",
     "react-dom": "^0.14.5"
-  },
-  "devDependencies": {
-    "babel-loader": "^6.2.0",
-    "webpack": "^1.12.9"
   }
 }
