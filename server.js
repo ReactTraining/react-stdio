@@ -101,7 +101,21 @@ require('babel-register')({
   presets: [ 'es2015', 'react' ]
 })
 
+// Redirect stdout to stderr, but save a reference so we can
+// still write to stdout.
+var stdout = process.stdout
+Object.defineProperty(process, 'stdout', {
+  configurable: true,
+  enumerable: true,
+  value: process.stderr
+})
+
+// Ensure console.log knows about the new stdout.
+var Console = require('console').Console
+console = new Console(process.stdout, process.stderr)
+
+// Read JSON blobs from stdin, pipe output to stdout.
 process.stdin
   .pipe(JSONStream.parse())
   .pipe(EventStream.map(createRequestHandler(process.cwd())))
-  .pipe(process.stdout)
+  .pipe(stdout)
