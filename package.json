@@ -5,7 +5,8 @@
   "bin": "./bin/react-stdio",
   "preferGlobal": true,
   "files": [
-    "bin"
+    "bin",
+    "server.js"
   ],
   "author": "Michael Jackson",
   "license": "MIT",
