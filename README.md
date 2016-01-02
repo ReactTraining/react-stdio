@@ -42,3 +42,11 @@ This function is asynchronous so you have time to do data fetching before you re
 ## Environment
 
 Your component file (and, optionally, your render file) are loaded in a node.js environment with Babel's [es2015](https://babeljs.io/docs/plugins/preset-es2015/) and [react](https://babeljs.io/docs/plugins/preset-react/) presets already installed. If you need additional code transforms to run (e.g. using webpack or Browserify) you should create your bundle first and tell react-stdio to load your bundle instead of the plain component file.
+
+Additionally, since react-stdio uses the `stdout` stream for all program output, all writes your code makes to `process.stdout` (including `console.log` statements) are redirected to `process.stderr`.
+
+## Integrations
+
+- [Elixir/Phoenix](http://blog.overstuffedgorilla.com/render-react-with-phoenix/)
+
+If you'd like to add an integration here, please contact [@mjackson](https://twitter.com/mjackson).
