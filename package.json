@@ -4,6 +4,10 @@
   "description": "Render React.js components on any backend",
   "bin": "./bin/react-stdio",
   "preferGlobal": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mjackson/react-stdio"
+  },
   "files": [
     "bin",
     "server.js"
