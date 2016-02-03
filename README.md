@@ -48,5 +48,6 @@ Additionally, since react-stdio uses the `stdout` stream for all program output,
 ## Integrations
 
 - [Elixir/Phoenix](http://blog.overstuffedgorilla.com/render-react-with-phoenix/)
+- [Ruby on Rails](https://github.com/aaronvb/rails_react_stdio)
 
 If you'd like to add an integration here, please contact [@mjackson](https://twitter.com/mjackson).
