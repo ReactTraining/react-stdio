@@ -96,11 +96,6 @@ function createRequestHandler(workingDir) {
   }
 }
 
-// For convenience, modules we require can use ES2015 and JSX.
-require('babel-register')({
-  presets: [ 'es2015', 'react' ]
-})
-
 // Redirect stdout to stderr, but save a reference so we can
 // still write to stdout.
 var stdout = process.stdout
