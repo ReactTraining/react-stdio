@@ -1,12 +1,12 @@
-var path = require('path')
-var invariant = require('invariant')
-var EventStream = require('event-stream')
-var JSONStream = require('JSONStream')
-var ReactDOMServer = require('react-dom/server')
-var React = require('react')
+const path = require('path')
+const invariant = require('invariant')
+const EventStream = require('event-stream')
+const JSONStream = require('JSONStream')
+const ReactDOMServer = require('react-dom/server')
+const React = require('react')
 
 function getDefaultExports(file) {
-  var moduleExports = require(file)
+  const moduleExports = require(file)
 
   // Return exports.default if using ES2015 modules.
   if (moduleExports && moduleExports.default)
@@ -24,22 +24,22 @@ function renderToString(element, callback) {
 }
 
 function handleRequest(workingDir, request, callback) {
-  var componentPath = request.component
-  var renderMethod = request.render
-  var props = request.props
+  const componentPath = request.component
+  const renderMethod = request.render
+  const props = request.props
 
   invariant(
     componentPath != null,
     'Missing { component } in request'
   )
 
-  var render
+  let render
   if (renderMethod == null || renderMethod === 'renderToString') {
     render = renderToString
   } else if (renderMethod === 'renderToStaticMarkup') {
     render = renderToStaticMarkup
   } else {
-    var methodFile = path.resolve(workingDir, renderMethod)
+    const methodFile = path.resolve(workingDir, renderMethod)
 
     try {
       render = getDefaultExports(methodFile)
@@ -55,9 +55,9 @@ function handleRequest(workingDir, request, callback) {
     renderMethod
   )
 
-  var componentFile = path.resolve(workingDir, componentPath)
+  const componentFile = path.resolve(workingDir, componentPath)
 
-  var component
+  let component
   try {
     component = getDefaultExports(componentFile)
   } catch (error) {
@@ -103,7 +103,7 @@ require('babel-register')({
 
 // Redirect stdout to stderr, but save a reference so we can
 // still write to stdout.
-var stdout = process.stdout
+const stdout = process.stdout
 Object.defineProperty(process, 'stdout', {
   configurable: true,
   enumerable: true,
@@ -111,7 +111,7 @@ Object.defineProperty(process, 'stdout', {
 })
 
 // Ensure console.log knows about the new stdout.
-var Console = require('console').Console
+const Console = require('console').Console
 console = new Console(process.stdout, process.stderr)
 
 // Read JSON blobs from stdin, pipe output to stdout.
