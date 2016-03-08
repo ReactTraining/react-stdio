@@ -2,6 +2,8 @@
   "name": "react-stdio",
   "version": "2.0.7",
   "description": "Render React.js components on any backend",
+  "author": "Michael Jackson",
+  "license": "MIT",
   "bin": "./bin/react-stdio",
   "preferGlobal": true,
   "repository": {
@@ -12,8 +14,6 @@
     "bin",
     "server.js"
   ],
-  "author": "Michael Jackson",
-  "license": "MIT",
   "dependencies": {
     "JSONStream": "^1.0.7",
     "babel-preset-es2015": "^6.3.13",
@@ -23,5 +23,8 @@
     "invariant": "^2.2.0",
     "react": "^0.14.5",
     "react-dom": "^0.14.5"
+  },
+  "devDependencies": {
+    "readline-sync": "^1.4.1"
   }
 }
