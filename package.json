@@ -14,6 +14,9 @@
     "bin",
     "server.js"
   ],
+  "scripts": {
+    "release": "node ./scripts/release.js"
+  },
   "dependencies": {
     "JSONStream": "^1.0.7",
     "event-stream": "^3.3.2",
