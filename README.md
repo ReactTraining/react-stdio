@@ -11,7 +11,7 @@ As its name suggests, other processes communicate with react-stdio using standar
 
 Using [npm](https://npmjs.com):
 
-    $ npm install react-stdio
+    $ npm install -g react-stdio
 
 ## Usage
 
