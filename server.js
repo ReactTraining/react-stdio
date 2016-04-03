@@ -1,3 +1,4 @@
+'use strict';
 const path = require('path')
 const invariant = require('invariant')
 const EventStream = require('event-stream')
@@ -112,7 +113,10 @@ Object.defineProperty(process, 'stdout', {
 
 // Ensure console.log knows about the new stdout.
 const Console = require('console').Console
-console = new Console(process.stdout, process.stderr)
+const stdioConsole = new Console(process.stdout, process.stderr);
+Object.keys(stdioConsole).forEach(function(key) {
+  console[key] = stdioConsole[key];
+});
 
 // Read JSON blobs from stdin, pipe output to stdout.
 process.stdin
