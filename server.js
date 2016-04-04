@@ -113,10 +113,11 @@ Object.defineProperty(process, 'stdout', {
 
 // Ensure console.log knows about the new stdout.
 const Console = require('console').Console
-const stdioConsole = new Console(process.stdout, process.stderr);
-Object.keys(stdioConsole).forEach(function(key) {
-  console[key] = stdioConsole[key];
-});
+Object.defineProperty(global, 'console', {
+  configurable: true,
+  enumerable: true,
+  value: new Console(process.stdout, process.stderr)
+})
 
 // Read JSON blobs from stdin, pipe output to stdout.
 process.stdin
