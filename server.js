@@ -1,4 +1,5 @@
-'use strict';
+'use strict'
+
 const path = require('path')
 const invariant = require('invariant')
 const EventStream = require('event-stream')
