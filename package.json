@@ -1,6 +1,6 @@
 {
   "name": "react-stdio",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Render React.js components on any backend",
   "author": "Michael Jackson",
   "license": "MIT",
