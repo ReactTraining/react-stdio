@@ -22,12 +22,20 @@ function getDefaultExports(moduleID) {
   return moduleExports
 }
 
-function renderToStaticMarkup(element, callback) {
-  callback(null, ReactDOMServer.renderToStaticMarkup(element))
+function renderToStaticMarkup(component, props, callback) {
+  callback(null, {
+    html: ReactDOMServer.renderToStaticMarkup(
+            React.createElement(component, props)
+          )
+  });
 }
 
-function renderToString(element, callback) {
-  callback(null, ReactDOMServer.renderToString(element))
+function renderToString(component, props, callback) {
+  callback(null, {
+    html: ReactDOMServer.renderToString(
+            React.createElement(component, props)
+          )
+  });
 }
 
 function handleRequest(workingDir, request, callback) {
@@ -79,7 +87,8 @@ function handleRequest(workingDir, request, callback) {
   )
 
   render(
-    React.createElement(component, props),
+    component,
+    props,
     callback
   )
 }
@@ -87,14 +96,14 @@ function handleRequest(workingDir, request, callback) {
 function createRequestHandler(workingDir) {
   return function (request, callback) {
     try {
-      handleRequest(workingDir, request, function (error, html) {
+      handleRequest(workingDir, request, function (error, response) {
         if (error) {
           callback(error)
-        } else if (typeof html !== 'string') {
+        } else if ('html' in response && typeof response['html'] !== 'string') {
           // Crash the server process.
           callback(new Error('Render method must return a string'))
         } else {
-          callback(null, JSON.stringify({ html: html }))
+          callback(null, JSON.stringify(response))
         }
       })
     } catch (error) {
