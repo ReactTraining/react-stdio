@@ -8,7 +8,7 @@
   "preferGlobal": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/mjackson/react-stdio"
+    "url": "https://github.com/ReactTraining/react-stdio"
   },
   "files": [
     "bin",
