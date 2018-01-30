@@ -72,20 +72,22 @@ function handleRequest(workingDir, request, callback) {
 
   invariant(component != null, "Cannot load component: %s", componentPath);
 
-  render(React.createElement(component, props), callback);
+  render(React.createElement(component, props), function(err, html) {
+    callback(err, html, component.context);
+  });
 }
 
 function createRequestHandler(workingDir) {
   return function(request, callback) {
     try {
-      handleRequest(workingDir, request, function(error, html) {
+      handleRequest(workingDir, request, function(error, html, context) {
         if (error) {
           callback(error);
         } else if (typeof html !== "string") {
           // Crash the server process.
           callback(new Error("Render method must return a string"));
         } else {
-          callback(null, JSON.stringify({ html: html }));
+          callback(null, JSON.stringify({ html: html, context: context }));
         }
       });
     } catch (error) {

@@ -15,7 +15,8 @@
     "server.js"
   ],
   "scripts": {
-    "release": "node ./scripts/release.js"
+    "release": "node ./scripts/release.js",
+    "test": "jest"
   },
   "dependencies": {
     "JSONStream": "^1.0.7",
@@ -25,6 +26,7 @@
     "react-dom": "^15.0.1"
   },
   "devDependencies": {
+    "jest": "^21.2.1",
     "readline-sync": "^1.4.1"
   }
 }
