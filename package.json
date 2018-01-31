@@ -6,16 +6,11 @@
   "license": "MIT",
   "bin": "./bin/react-stdio",
   "preferGlobal": true,
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ReactTraining/react-stdio"
-  },
+  "repository": "ReactTraining/react-stdio",
   "files": ["bin", "server.js"],
   "scripts": {
-    "release": "node ./scripts/release.js",
-    "test": "jest",
-    "dist:binary":
-      "pkg ./bin/react-stdio -t $npm_package_config_platform -o ./dist/$npm_package_config_version/$npm_package_config_platform/react-stdio"
+    "build": "node ./scripts/build.js",
+    "test": "jest"
   },
   "dependencies": {
     "JSONStream": "^1.0.7",
@@ -26,8 +21,7 @@
   },
   "devDependencies": {
     "jest": "^22.1.4",
-    "pkg": "^4.3.0",
-    "readline-sync": "^1.4.1"
+    "pkg": "^4.3.0"
   },
   "jest": {
     "testPathIgnorePatterns": ["/node_modules/", "__tests__/mocks"]
