@@ -17,6 +17,7 @@ deploy:
   email: mjijackson@gmail.com
   api_key: "$NPM_TOKEN"
   tag: "$NPM_TAG"
+  skip_cleanup: true
   on:
     tags: true
 - provider: releases
