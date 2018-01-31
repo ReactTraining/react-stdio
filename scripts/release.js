@@ -11,6 +11,14 @@ const getPackageVersion = () =>
   JSON.parse(fs.readFileSync(path.resolve(__dirname, "../package.json")))
     .version;
 
+const binaryPlatforms = [
+  "win-x64",
+  "win-x86",
+  "linux-x64",
+  "linux-x86",
+  "macos"
+];
+
 // Get the next version, which may be specified as a semver
 // version number or anything `npm version` recognizes. This
 // is a "pre-release" if nextVersion is premajor, preminor,
@@ -29,9 +37,17 @@ exec("npm test");
 // 4) Create a v* tag that points to that commit
 exec(`npm version ${nextVersion} -m "Version %s"`);
 
-// 5) Publish to npm. Use the "next" tag for pre-releases,
+// 5) Build a binary version for universal support
+exec(`npm config set react-stdio:version ${nextVersion}`);
+
+binaryPlatforms.forEach(platform => {
+  exec(`npm config set react-stdio:platform ${platform}`);
+  exec(`npm run dist:binary`);
+});
+
+// 6) Publish to npm. Use the "next" tag for pre-releases,
 // "latest" for all others
 exec(`npm publish --tag ${isPrerelease ? "next" : "latest"}`);
 
-// 6) Push the v* tag to GitHub
+// 7) Push the v* tag to GitHub
 exec(`git push -f origin v${getPackageVersion()}`);

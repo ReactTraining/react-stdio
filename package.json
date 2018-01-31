@@ -10,13 +10,12 @@
     "type": "git",
     "url": "https://github.com/ReactTraining/react-stdio"
   },
-  "files": [
-    "bin",
-    "server.js"
-  ],
+  "files": ["bin", "server.js"],
   "scripts": {
     "release": "node ./scripts/release.js",
-    "test": "jest"
+    "test": "jest",
+    "dist:binary":
+      "pkg ./bin/react-stdio -t $npm_package_config_platform -o ./dist/$npm_package_config_version/$npm_package_config_platform/react-stdio"
   },
   "dependencies": {
     "JSONStream": "^1.0.7",
@@ -27,12 +26,10 @@
   },
   "devDependencies": {
     "jest": "^22.1.4",
+    "pkg": "^4.3.0",
     "readline-sync": "^1.4.1"
   },
   "jest": {
-    "testPathIgnorePatterns": [
-      "/node_modules/",
-      "__tests__/mocks"
-    ]
+    "testPathIgnorePatterns": ["/node_modules/", "__tests__/mocks"]
   }
 }
