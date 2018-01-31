@@ -5,10 +5,21 @@ env:
   global:
   - secure: J1Ws1BJjGPgYEKX27UN1AUxZsvX4pbiYAYMn7XxfXqhVj2ZZo7NM/wKXWw8u3RqyDZFR3YrE8Ww14DWvmfMAyu4EPTHKqAmKydi8eI78ZotSsqtvvcnpmltzKlvGM6hdkWe2A4sOizLA5BTfCf0iIJXMwQ6zJreye9HsgaeRCsEvni653QfxAftF8kqfWNfuD5GxHPkUX7vYvL1BbaUE/0RFh9lXNiOmu8jGzIK6YSSe2+yFbeuSSJXLveuIaq9D4YzqiAXscwQXhz7RIw5/4sBc/ClmyNcDWEjvjmYsKV1mQJiCGzSv2kf/iwphMansAgCw7dxG82PWPznGls5o49X44gQqEMbXkO3PDyJjpwAm7X7Faob1Y4LmZw0+Lcrw21jnjtBlaSWMGRdPW3EgKTkCgCfQqK3xfkc44yVKlnIoIbbPejZ7nP8JfWWu3mXH6y4nVB22Lw4pZQIGY3JNpF3AK0jNhi9IP7MxcgJn6LbgWFqSbWZnCuEoPaKEsCK32eVI/CYP198lCA/4EN8p9XW72ZipwVCl/hblDPbUnjZNMZ48ouZqumysmBle2gJhi1z+hL0w6LQsWO7REAX9ckUU5RHQHFWg340FEhYcuX6vd+eslOuKTnsdzlb5y12VntQiOLY3Kky6oz9DsLRuvp93DB5+SChIdUeqoRMNSqA=
   - NPM_TAG=$([[ "$TRAVIS_TAG" == *-* ]] && echo "next" || echo "latest")
-script: yarn test
+script:
+  - yarn test
+  - yarn build
 deploy:
-  provider: npm
-  email: mjijackson@gmail.com
-  api_key: "$NPM_TOKEN"
-  tag: "$NPM_TAG"
-  on: tags
+  - provider: npm
+    email: mjijackson@gmail.com
+    api_key: "$NPM_TOKEN"
+    tag: "$NPM_TAG"
+    on:
+      tags: true
+  - provider: releases
+    api_key: "$GITHUB_TOKEN"
+    file_glob: true
+    file: build/*
+    skip_cleanup: true
+    on:
+      tags: true
+
