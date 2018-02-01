@@ -12,7 +12,7 @@
     "server.js"
   ],
   "scripts": {
-    "build": "node ./scripts/build.js",
+    "build": "./scripts/build.sh",
     "test": "jest"
   },
   "dependencies": {

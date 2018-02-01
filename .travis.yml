@@ -22,10 +22,8 @@ deploy:
     tags: true
 - provider: releases
   api_key: "$GITHUB_TOKEN"
-  file:
-    - "build/$TRAVIS_TAG/win-x64/react-stdio.exe"
-    - "build/$TRAVIS_TAG/linux-x64/react-stdio"
-    - "build/$TRAVIS_TAG/macos/react-stdio"
+  file_glob: true
+  file: build/*.zip
   skip_cleanup: true
   on:
     tags: true
