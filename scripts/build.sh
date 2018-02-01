@@ -11,12 +11,12 @@ for platform in "${platforms[@]}"
 do
   archive=react-stdio-$tag-$platform
 
-  echo "Creating build/$archive..."
+  echo "Creating $archive build..."
 
   pkg bin/react-stdio -t $platform -o build/$archive/react-stdio
   echo "$tag" > build/$archive/version
 
   cd build
-  zip -q -r $archive $archive
+  zip -q -r $archive.zip $archive
   cd - > /dev/null
 done
