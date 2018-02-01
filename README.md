@@ -1,9 +1,11 @@
-# react-stdio [![npm package][npm-badge]][npm]
+# react-stdio [![Travis][build-badge]][build] [![npm package][npm-badge]][npm]
 
+[build-badge]: https://img.shields.io/travis/ReactTraining/react-stdio/master.svg?style=flat-square
+[build]: https://travis-ci.org/ReactTraining/react-stdio
 [npm-badge]: https://img.shields.io/npm/v/react-stdio.svg?style=flat-square
 [npm]: https://www.npmjs.org/package/react-stdio
 
-[react-stdio](https://github.com/ReactTraining/react-stdio) lets you render [React](https://reactjs.org/) components on the server, regardless of the backend technology you're using.
+[react-stdio](https://npmjs.org/package/react-stdio) lets you render [React](https://reactjs.org/) components on the server, regardless of the backend technology you're using.
 
 As its name suggests, other processes communicate with react-stdio using standard streams. The protocol is JSON, so any environment that can spawn a child process and write JSON to its stdin can use the server. Requests are handled serially, so responses are issued in the same order requests are received.
 
@@ -55,3 +57,7 @@ Also, since react-stdio uses the `stdout` stream for all program output, all wri
 * [Ruby on Rails](https://github.com/aaronvb/rails_react_stdio)
 
 If you'd like to add an integration here, please submit a PR.
+
+## About
+
+react-stdio is developed and maintained by [React Training](https://reacttraining.com). If you're interested in learning more about what React can do for your company, please [get in touch](mailto:hello@reacttraining.com)!
