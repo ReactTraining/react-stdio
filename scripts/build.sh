@@ -9,7 +9,7 @@ platforms=( win-x64 linux-x64 macos )
 
 for platform in "${platforms[@]}"
 do
-  archive=react-stdio-$platform
+  archive=react-stdio-$tag-$platform
 
   echo "Creating build/$archive..."
 
