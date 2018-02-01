@@ -27,8 +27,7 @@ deploy:
   prerelease: false
   skip_cleanup: true
   on:
-    condition: $NPM_TAG=latest
-    tags: true
+    condition: "$TRAVIS_TAG" != "" && $NPM_TAG=latest
 - provider: releases
   api_key: "$GITHUB_TOKEN"
   file_glob: true
@@ -36,5 +35,4 @@ deploy:
   prerelease: true
   skip_cleanup: true
   on:
-    condition: $NPM_TAG=next
-    tags: true
+    condition: "$TRAVIS_TAG" != "" && $NPM_TAG=next
