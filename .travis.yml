@@ -2,8 +2,8 @@ language: node_js
 node_js: 8
 cache:
   directories:
-  - $HOME/.cache/yarn
-  - $HOME/.pkg-cache
+  - "$HOME/.cache/yarn"
+  - "$HOME/.pkg-cache"
   - node_modules
 env:
   global:
@@ -11,8 +11,8 @@ env:
   - secure: V/qNmzlEZsMc7m4yapsRtxND+zEM2hJv08TohXIe0ddryT2ifUbypChXuocGvl7jO9v/Vps2rbHjHiN8joehYbmQK5DVmQaTzpk4LxeET0EXF/kOUwGNK+nMztVJtRG8u5YavUFuoJ6ou2FhS3AdBgjWSH4/gmbEDNYmp6kDGgNcfGERjHjMh/gFY+vtBwF7j8U05hSB7X/9Pr7/LVCsWONg7/zGqeLpYts8D884ja0q6P2HozmlPR4DR55/WjKj2Gs7Fnu6bIBmRPxGeSiMu/sIaWOUNrl8SBxEcql/MDA2+ozrzRngtFLb7BGrHoPBzAK/CGG4Ryu/JnFjn1ozxiypBGuxpGAy85ALVwDvbrUW4ovFS8MgTmBzJO+FKhya1gAeQnLq+NCuw+Q25aUKqZNFHV3j9H/FgG2NY05YymlMzwMJhbE1D4eZQwdVpjaQl+yxoxwWvWSpn7u6+F4ev1oALDVoLj5DN0SmjZqgpWClNIPV6zAN0QaBzBYtHfq3h4/MS9TSFJo1v0T1euD8/ZBX3tmBJ8AwVZUOs6thX07SSGTIy64+WpTHapI/w6JUWTs79KSZWKX/r2kEUqkfy0FeoRDQcE3iPm2RggsgO+gmCgaJ2ZMGz/YBzcIIq6dPo5pBcCnEYs/8zwgnZ4c6Ol1TzuB920OXSZWj8xCmVgU=
   - NPM_TAG=$([[ "$TRAVIS_TAG" == *-* ]] && echo "next" || echo "latest")
 script:
-- yarn test
-- yarn build
+- npm test
+- npm run build
 deploy:
 - provider: npm
   email: mjijackson@gmail.com
@@ -25,7 +25,7 @@ deploy:
 - provider: releases
   api_key: "$GITHUB_TOKEN"
   file_glob: true
-  file: build/*.zip
+  file: "build/*.zip"
   prerelease: true
   skip_cleanup: true
   on:
@@ -34,7 +34,7 @@ deploy:
 - provider: releases
   api_key: "$GITHUB_TOKEN"
   file_glob: true
-  file: build/*.zip
+  file: "build/*.zip"
   prerelease: false
   skip_cleanup: true
   on:
