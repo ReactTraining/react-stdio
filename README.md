@@ -3,19 +3,23 @@
 [npm-badge]: https://img.shields.io/npm/v/react-stdio.svg?style=flat-square
 [npm]: https://www.npmjs.org/package/react-stdio
 
-[react-stdio](https://github.com/mjackson/react-stdio) lets you render [React](https://facebook.github.io/react/) components on the server, regardless of the backend technology you're using.
+[react-stdio](https://github.com/ReactTraining/react-stdio) lets you render [React](https://reactjs.org/) components on the server, regardless of the backend technology you're using.
 
 As its name suggests, other processes communicate with react-stdio using standard streams. The protocol is JSON, so any environment that can spawn a child process and write JSON to its stdin can use the server. Requests are handled serially, so responses are issued in the same order requests are received.
 
 ## Installation
 
-Using [npm](https://npmjs.com):
+If you have node installed, you can install using npm:
 
     $ npm install -g react-stdio
 
+This will put the `react-stdio` executable in your [`npm bin`](https://docs.npmjs.com/cli/bin).
+
+If you don't have node installed, you can download the executable for your architecture from [the releases page](https://github.com/ReactTraining/react-stdio/releases).
+
 ## Usage
 
-Once you've installed the server, you will have a `react-stdio` binary available (assuming `node_modules/.bin` is in your `$PATH`). Execute it to start the server.
+After installation, execute `react-stdio` to start the server.
 
 To render a React component, write a JSON blob to stdin with any of the following properties:
 
@@ -23,7 +27,7 @@ To render a React component, write a JSON blob to stdin with any of the followin
     props           Any props you want to pass to the component (optional, default is {})
     render          The type of rendering (optional, default is renderToString)
 
-If the request is successful, the server will put a JSON blob with `{"html":"..."}` on stdout. If the request fails for some reason, the JSON will have an `error` property instead of `html`.
+If the request is successful, the server will put a JSON blob with `{"html":"...","context":...}` on stdout. If the request fails for some reason, the JSON will have an `error` property instead of `html`.
 
 Example:
 
@@ -47,7 +51,7 @@ Also, since react-stdio uses the `stdout` stream for all program output, all wri
 
 ## Integrations
 
-- [Elixir/Phoenix](http://blog.overstuffedgorilla.com/render-react-with-phoenix/)
-- [Ruby on Rails](https://github.com/aaronvb/rails_react_stdio)
+* [Elixir/Phoenix](http://blog.overstuffedgorilla.com/render-react-with-phoenix/)
+* [Ruby on Rails](https://github.com/aaronvb/rails_react_stdio)
 
 If you'd like to add an integration here, please submit a PR.
