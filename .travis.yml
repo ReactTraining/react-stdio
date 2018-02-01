@@ -24,15 +24,17 @@ deploy:
   api_key: "$GITHUB_TOKEN"
   file_glob: true
   file: build/*.zip
-  prerelease: false
+  prerelease: true
   skip_cleanup: true
   on:
-    condition: '"$TRAVIS_TAG" != "" && $NPM_TAG = latest'
+    all_branches: true
+    condition: '"$TRAVIS_TAG" != "" && $NPM_TAG = next'
 - provider: releases
   api_key: "$GITHUB_TOKEN"
   file_glob: true
   file: build/*.zip
-  prerelease: true
+  prerelease: false
   skip_cleanup: true
   on:
-    condition: '"$TRAVIS_TAG" != "" && $NPM_TAG = next'
+    all_branches: true
+    condition: '"$TRAVIS_TAG" != "" && $NPM_TAG = latest'
