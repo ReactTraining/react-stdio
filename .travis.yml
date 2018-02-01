@@ -19,7 +19,8 @@ deploy:
   tag: "$NPM_TAG"
   skip_cleanup: true
   on:
-    tags: true
+    all_branches: true
+    condition: '"$TRAVIS_TAG" =~ "^v[0-9]"'
 - provider: releases
   api_key: "$GITHUB_TOKEN"
   file_glob: true
@@ -28,7 +29,7 @@ deploy:
   skip_cleanup: true
   on:
     all_branches: true
-    condition: '"$TRAVIS_TAG" != "" && $NPM_TAG = next'
+    condition: '"$TRAVIS_TAG" =~ "^v[0-9]" && $NPM_TAG = next'
 - provider: releases
   api_key: "$GITHUB_TOKEN"
   file_glob: true
@@ -37,4 +38,4 @@ deploy:
   skip_cleanup: true
   on:
     all_branches: true
-    condition: '"$TRAVIS_TAG" != "" && $NPM_TAG = latest'
+    condition: '"$TRAVIS_TAG" =~ "^v[0-9]" && $NPM_TAG = latest'
