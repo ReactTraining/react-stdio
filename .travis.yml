@@ -24,7 +24,17 @@ deploy:
   api_key: "$GITHUB_TOKEN"
   file_glob: true
   file: build/*.zip
+  prerelease: false
+  skip_cleanup: true
+  on:
+    condition: $NPM_TAG=latest
+    tags: true
+- provider: releases
+  api_key: "$GITHUB_TOKEN"
+  file_glob: true
+  file: build/*.zip
   prerelease: true
   skip_cleanup: true
   on:
+    condition: $NPM_TAG=next
     tags: true
