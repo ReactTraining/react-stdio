@@ -15,7 +15,7 @@ script:
 - npm run build
 deploy:
 - provider: npm
-  email: mjijackson@gmail.com
+  email: npm@mjackson.me
   api_key: "$NPM_TOKEN"
   tag: "$NPM_TAG"
   skip_cleanup: true
