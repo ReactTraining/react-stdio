@@ -4,13 +4,15 @@
   "description": "Render React.js components on any backend",
   "author": "Michael Jackson",
   "license": "MIT",
-  "bin": "./bin/react-stdio",
+  "bin": {
+    "react-stdio": "./modules/cli.js"
+  },
+  "files": [
+    "modules/cli.js",
+    "modules/index.js"
+  ],
   "preferGlobal": true,
   "repository": "ReactTraining/react-stdio",
-  "files": [
-    "bin",
-    "server.js"
-  ],
   "scripts": {
     "build": "./scripts/build.sh",
     "test": "jest"

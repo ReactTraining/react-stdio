@@ -5,12 +5,9 @@ describe("server", () => {
   let proc;
 
   beforeEach(() => {
-    proc = childProcess.spawn(
-      path.join(__dirname, "..", "bin", "react-stdio"),
-      {
-        stdio: "pipe"
-      }
-    );
+    proc = childProcess.spawn(path.join(__dirname, "..", "cli.js"), {
+      stdio: "pipe"
+    });
   });
 
   afterEach(() => {

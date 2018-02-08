@@ -13,7 +13,7 @@ do
 
   echo "Creating $archive build..."
 
-  pkg bin/react-stdio -t $platform -o build/$archive/react-stdio
+  pkg modules/cli.js -t $platform -o build/$archive/react-stdio
   echo "$tag" > build/$archive/version
 
   cd build
