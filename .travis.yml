@@ -2,7 +2,6 @@ language: node_js
 node_js: 8
 cache:
   directories:
-  - "$HOME/.cache/yarn"
   - "$HOME/.pkg-cache"
   - node_modules
 env:

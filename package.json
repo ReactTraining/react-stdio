@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "jest": "^22.1.4",
-    "pkg": "^4.3.0"
+    "pkg": "^4.3.4"
   },
   "jest": {
     "testPathIgnorePatterns": [
