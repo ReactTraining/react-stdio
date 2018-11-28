@@ -2,11 +2,11 @@ const React = require("react");
 
 let context = {};
 
-const component = function() {
+function ContextComponent() {
   context.test = true;
   return React.createElement("div", null, "I am a context component");
-};
+}
 
-component.context = context;
+ContextComponent.context = context;
 
-module.exports = component;
+module.exports = ContextComponent;

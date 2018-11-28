@@ -1,5 +1,7 @@
 const React = require("react");
 
-module.exports = function() {
+function TestComponent() {
   return React.createElement("div", null, "I am a test component");
-};
+}
+
+module.exports = TestComponent;
