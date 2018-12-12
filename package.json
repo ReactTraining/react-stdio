@@ -15,6 +15,7 @@
   "repository": "ReactTraining/react-stdio",
   "scripts": {
     "build": "./scripts/build.sh",
+    "clean": "git clean -fdX .",
     "test": "jest"
   },
   "dependencies": {
