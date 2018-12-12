@@ -2,40 +2,40 @@ language: node_js
 node_js: 8
 cache:
   directories:
+  - "$HOME/.npm"
   - "$HOME/.pkg-cache"
-  - node_modules
 env:
-  global:
-  - secure: J1Ws1BJjGPgYEKX27UN1AUxZsvX4pbiYAYMn7XxfXqhVj2ZZo7NM/wKXWw8u3RqyDZFR3YrE8Ww14DWvmfMAyu4EPTHKqAmKydi8eI78ZotSsqtvvcnpmltzKlvGM6hdkWe2A4sOizLA5BTfCf0iIJXMwQ6zJreye9HsgaeRCsEvni653QfxAftF8kqfWNfuD5GxHPkUX7vYvL1BbaUE/0RFh9lXNiOmu8jGzIK6YSSe2+yFbeuSSJXLveuIaq9D4YzqiAXscwQXhz7RIw5/4sBc/ClmyNcDWEjvjmYsKV1mQJiCGzSv2kf/iwphMansAgCw7dxG82PWPznGls5o49X44gQqEMbXkO3PDyJjpwAm7X7Faob1Y4LmZw0+Lcrw21jnjtBlaSWMGRdPW3EgKTkCgCfQqK3xfkc44yVKlnIoIbbPejZ7nP8JfWWu3mXH6y4nVB22Lw4pZQIGY3JNpF3AK0jNhi9IP7MxcgJn6LbgWFqSbWZnCuEoPaKEsCK32eVI/CYP198lCA/4EN8p9XW72ZipwVCl/hblDPbUnjZNMZ48ouZqumysmBle2gJhi1z+hL0w6LQsWO7REAX9ckUU5RHQHFWg340FEhYcuX6vd+eslOuKTnsdzlb5y12VntQiOLY3Kky6oz9DsLRuvp93DB5+SChIdUeqoRMNSqA=
-  - secure: V/qNmzlEZsMc7m4yapsRtxND+zEM2hJv08TohXIe0ddryT2ifUbypChXuocGvl7jO9v/Vps2rbHjHiN8joehYbmQK5DVmQaTzpk4LxeET0EXF/kOUwGNK+nMztVJtRG8u5YavUFuoJ6ou2FhS3AdBgjWSH4/gmbEDNYmp6kDGgNcfGERjHjMh/gFY+vtBwF7j8U05hSB7X/9Pr7/LVCsWONg7/zGqeLpYts8D884ja0q6P2HozmlPR4DR55/WjKj2Gs7Fnu6bIBmRPxGeSiMu/sIaWOUNrl8SBxEcql/MDA2+ozrzRngtFLb7BGrHoPBzAK/CGG4Ryu/JnFjn1ozxiypBGuxpGAy85ALVwDvbrUW4ovFS8MgTmBzJO+FKhya1gAeQnLq+NCuw+Q25aUKqZNFHV3j9H/FgG2NY05YymlMzwMJhbE1D4eZQwdVpjaQl+yxoxwWvWSpn7u6+F4ev1oALDVoLj5DN0SmjZqgpWClNIPV6zAN0QaBzBYtHfq3h4/MS9TSFJo1v0T1euD8/ZBX3tmBJ8AwVZUOs6thX07SSGTIy64+WpTHapI/w6JUWTs79KSZWKX/r2kEUqkfy0FeoRDQcE3iPm2RggsgO+gmCgaJ2ZMGz/YBzcIIq6dPo5pBcCnEYs/8zwgnZ4c6Ol1TzuB920OXSZWj8xCmVgU=
-  - NPM_TAG=$([[ "$TRAVIS_TAG" == *-* ]] && echo "next" || echo "latest")
+- NPM_TAG=$([[ "$TRAVIS_TAG" == *-* ]] && echo "next" || echo "latest")
 script:
 - npm test
 - npm run build
 deploy:
 - provider: npm
-  email: npm@mjackson.me
-  api_key: "$NPM_TOKEN"
-  tag: "$NPM_TAG"
   skip_cleanup: true
+  email: npm@mjackson.me
+  tag: "$NPM_TAG"
+  api_key:
+    secure: Ouhk1VI9D8JUihTJl16S2yVYHu1ngFEbmrrq6KJzTCD69N4NiyvXzMYhN97K/R0twQqnxS10aAufPvXnFtTvQz48/USGp34gSzLySSqWCXsCpOothsew4SUDqHZPdLIUJqwhpYyJsyCtDbwf8cOTgxlbXW+DE8Y1s0LTJjbbJrg2RlwNjIdYeAjfDQuO2nL3zHPAGJQ/mYJEyicZ6T2H46O4kLuzWvocvUYnEV/j/gtBtBCukg9UG//YxHJVlNfeRXYCiQ/mf5ReCY7zgghK+eJXiaKJZ+l/hV2sp7C893YwKs1IQJ5kn/liwtJfqLGSKrsw7jwu1AESx1jhQsdhCJx5pj61BUTtAGF1acetiD7/MmIHcuDUYqiVsK38UYUxW3XUIOOWH8FpcAJ3+tOpO34kDd4LCBxe09BMbDaGruuSh7+JmbBKNgvX+kJu8b4I80vRs0SrrF9lqdjQ9q/BqwnxbBWXhCZo6dDZEEwwNtLyz6hiuafnZKZgZGb9gcNQ/kwccSnZuifhnNU5nHJL9eJJrAL+XY0l8OWVOMbmuX+iSW7b0yVWqgf3bTiAez2fUUhx1bWFQlOPo/Z5I8y2zZjzCKdFOk59J4hFAhtMGkw3LJmoCyqkVGxR2x1TnH0z8R8ScBZafV8RK4/GDQnOxNIPHIPtdRn8XIXtGkev/YE=
   on:
-    all_branches: true
+    tags: true
     condition: '"$TRAVIS_TAG" =~ ^v[0-9]'
 - provider: releases
-  api_key: "$GITHUB_TOKEN"
+  skip_cleanup: true
+  file: build/*.zip
   file_glob: true
-  file: "build/*.zip"
   prerelease: true
-  skip_cleanup: true
+  api_key:
+    secure: RFzhM7HoiSqoOt79Y1Obx7RkgO4UujKLTyqgci6vln0x5A/DchUh7rErpvDLNzvrDeIIp5S41MeQ+CJuVnL5BSWvhsf50/qmSfY2iky3Gl8r5qDG0uKffwPv5Pw+TmtiS3hy9n7PY4Py6u+2fIUChK7OKbPfvvjGLNWAqUi+B9U1c9qOBkHg2LkH+XdtO4dwsjHB/mZ4s10PntLfI6mA0RXIW8/mhYD4gYTWg/DtuenNMcZKDAP+z+GWZr8cen7haMOtoYqY9SA103VgeudXpSzZr5JKSMGnx6YrHicsGaRIal69sC6RspelJsW2+6yaQtIWH8zvb9IvFPv9QP3xYEftVkqxJXr9fsDBVFZIkrF3fCBf7at8UT1CVz3kEH07oc+RZahnVBNqvTbelO32whY2wSV7QBVg6xf0UEeP+un9eBIn1M9AUXiH90KskNVu+Gcs0kNqurpo/cEXXcAuGxK/2KGyfJkg9MKx1B6FmyW1QOIS8ZGOwiUha77fudDq+PUTrjByY2NEyk1GhUmildyoGx5Ds+vwqgBHHkGu7VVitltX7SnnMh48E3AeylYHE2iMSfDRujRefOgL3sEAnHjhU3yBnfRdPsD7jdi/Rux1qzbpVdK5u7gPxrr9SHYc49zVd6e7075UC7twiV99NQoYUpI+7f2q1KffRRt+q24=
   on:
-    all_branches: true
-    condition: '"$TRAVIS_TAG" =~ ^v[0-9] && $NPM_TAG = next'
+    tags: true
+    condition: '"$TRAVIS_TAG" =~ ^v[0-9] && "$NPM_TAG" = "next"'
 - provider: releases
-  api_key: "$GITHUB_TOKEN"
-  file_glob: true
-  file: "build/*.zip"
-  prerelease: false
   skip_cleanup: true
+  file: build/*.zip
+  file_glob: true
+  prerelease: false
+  api_key:
+    secure: RFzhM7HoiSqoOt79Y1Obx7RkgO4UujKLTyqgci6vln0x5A/DchUh7rErpvDLNzvrDeIIp5S41MeQ+CJuVnL5BSWvhsf50/qmSfY2iky3Gl8r5qDG0uKffwPv5Pw+TmtiS3hy9n7PY4Py6u+2fIUChK7OKbPfvvjGLNWAqUi+B9U1c9qOBkHg2LkH+XdtO4dwsjHB/mZ4s10PntLfI6mA0RXIW8/mhYD4gYTWg/DtuenNMcZKDAP+z+GWZr8cen7haMOtoYqY9SA103VgeudXpSzZr5JKSMGnx6YrHicsGaRIal69sC6RspelJsW2+6yaQtIWH8zvb9IvFPv9QP3xYEftVkqxJXr9fsDBVFZIkrF3fCBf7at8UT1CVz3kEH07oc+RZahnVBNqvTbelO32whY2wSV7QBVg6xf0UEeP+un9eBIn1M9AUXiH90KskNVu+Gcs0kNqurpo/cEXXcAuGxK/2KGyfJkg9MKx1B6FmyW1QOIS8ZGOwiUha77fudDq+PUTrjByY2NEyk1GhUmildyoGx5Ds+vwqgBHHkGu7VVitltX7SnnMh48E3AeylYHE2iMSfDRujRefOgL3sEAnHjhU3yBnfRdPsD7jdi/Rux1qzbpVdK5u7gPxrr9SHYc49zVd6e7075UC7twiV99NQoYUpI+7f2q1KffRRt+q24=
   on:
-    all_branches: true
-    condition: '"$TRAVIS_TAG" =~ ^v[0-9] && $NPM_TAG = latest'
+    tags: true
+    condition: '"$TRAVIS_TAG" =~ ^v[0-9] && "$NPM_TAG" = "latest"'
